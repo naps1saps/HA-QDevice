@@ -5,9 +5,19 @@ set -e
 bashio::log.info "Stopping ssh server"
 service ssh stop
 
-bashio::log.info "Updating the sshd_config"
-SSHD_CONFIG="$(bashio::config 'sshd_config')"
-echo "${SSHD_CONFIG}" > /etc/ssh/sshd_config
+#bashio::log.info "Updating the sshd_config"
+#SSHD_CONFIG="$(bashio::config 'sshd_config')"
+#echo "${SSHD_CONFIG}" > /etc/ssh/sshd_config
+
+#Create config file for ssh server
+bashio::log.info "Creating the sshd_config (Port:22)"
+echo "Port 22" > /etc/ssh/sshd_config
+echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+echo "StrictModes yes" >> /etc/ssh/sshd_config
+echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
+echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
+echo "UsePAM yes" >> /etc/ssh/sshd_config
+echo "Subsystem sftp internal-sftp" >> /etc/ssh/sshd_config
 
 bashio::log.info "Updating the authorized_keys"
 echo "" > ~/.ssh/authorized_keys
