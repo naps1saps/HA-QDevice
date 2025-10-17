@@ -24,12 +24,18 @@ options:
     - public_key: "" # by default assume that corosync-qnetd is able to push its certificate
   sshd_config: |
     Port 22
+
     PermitRootLogin yes
+
     StrictModes yes
+
     PubkeyAuthentication yes
+
     PasswordAuthentication no
+
     UsePAM yes
-    Subsystem sftp internal-sftp
+
+    Subsystem sftp internal-sftpz
 schema:
   port: int
   server_tls: str
