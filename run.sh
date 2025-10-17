@@ -13,9 +13,9 @@ service ssh stop
 bashio::log.info "Creating the sshd_config (Port:22)"
 echo "Port 22" > /etc/ssh/sshd_config
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
-echo "StrictModes yes" >> /etc/ssh/sshd_config
-echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
-echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
+#echo "StrictModes yes" >> /etc/ssh/sshd_config
+#echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
+#echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
 echo "UsePAM yes" >> /etc/ssh/sshd_config
 echo "Subsystem sftp internal-sftp" >> /etc/ssh/sshd_config
 
