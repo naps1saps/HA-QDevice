@@ -23,14 +23,14 @@ options:
   debug: true
   public_keys:
     - public_key: ""
-  sshd_config: |
-    Port 22
+  sshd_config: |-
+    "Port 22
     PermitRootLogin yes
     StrictModes yes
     PubkeyAuthentication yes
     PasswordAuthentication no
-    UsePAM yes
-    Subsystem sftp internal-sftp
+    UsePAM yes\n
+    Subsystem sftp internal-sftp"
 schema:
   port: int
   server_tls: str
