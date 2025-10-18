@@ -31,6 +31,5 @@ schema:
   Debug: bool
   Enable_SSH_Server: bool
   AddOn_root_Password: str
-  sshd_config: str
   public_keys:
     - public_key: str
