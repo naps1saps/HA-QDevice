@@ -21,7 +21,7 @@ options:
   Client_TLS: "on"
   Debug: true
   Enable SSH Server (Required for Setup): false ##### Off by default for security purposes #####
-  AddOn root Password: null
+  AddOn root Password:
   public_keys:
     - public_key: "" # by default assume that corosync-qnetd is able to push its certificate
   sshd_config: |

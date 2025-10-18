@@ -29,7 +29,7 @@ for idx in $(bashio::config 'public_keys|keys'); do
 done
 
 ENABLE_SSH=$(bashio::config 'Enable SSH Server (Required for Setup)')
-if[${ENABLE_SSH} == true]
+if[${ENABLE_SSH}]
 then
   bashio::log.info "Starting SSH Server"
   service ssh start
