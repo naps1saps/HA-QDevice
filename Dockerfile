@@ -1,11 +1,10 @@
 ARG BUILD_FROM
 FROM ${BUILD_FROM}
 
-# install corosync-qnetd and openssh-server
+# install corosync-qnetd, corosync-qdevice, and openssh-server
 RUN apt update &&  \
-    apt install -y corosync-qnetd openssh-server &&  \
+    apt install -y corosync-qnetd corosync-qdevice openssh-server &&  \
     rm -rf /var/lib/apt/lists/*
-#RUN echo 'root:Docker!' | chpasswd
 
 # Copy data for add-on
 COPY run.sh /
