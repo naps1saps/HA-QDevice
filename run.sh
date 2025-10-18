@@ -41,11 +41,11 @@ ROOT_PWD="$(bashio::config 'AddOn_root_Password')"
 echo "root:${ROOT_PWD}" | chpasswd
 
 bashio::log.info "Run corosync-qnetd in foreground:"
-bashio::log.info "  using -p $(bashio::config 'port')"
-bashio::log.info "  using -s $(bashio::config 'server_tls')"
-bashio::log.info "  using -c $(bashio::config 'client_tls')"
-DEBUG=$(bashio::config 'debug')
+bashio::log.info "  using -p $(bashio::config 'Port')"
+bashio::log.info "  using -s $(bashio::config 'Server_TLS')"
+bashio::log.info "  using -c $(bashio::config 'Client_TLS')"
+DEBUG=$(bashio::config 'Debug')
 bashio::log.info "  using -d ${DEBUG}"
 service corosync-qnetd stop
-corosync-qnetd -f "$([ "${DEBUG}" = "true" ] && echo "-d")" -p "$(bashio::config 'port')" -s "$(bashio::config 'server_tls')" -c "$(bashio::config 'client_tls')"
+corosync-qnetd -f "$([ "${DEBUG}" = "true" ] && echo "-d")" -p "$(bashio::config 'Port')" -s "$(bashio::config 'Server_TLS')" -c "$(bashio::config 'Client_TLS')"
 
