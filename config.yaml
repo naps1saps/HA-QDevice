@@ -11,17 +11,20 @@ arch:
   - i386
 ports:
   "5403": "5403"
-  "22": null # for security reasons set by the user to ensure manual is followed
+  "22": "22"
 ports_description:
   "5403": "corosync-qnetd port"
-  "22": "ssh port used during 'pvecm qdevice setup <QDEVICE-IP>'"
+  "22": "SSH port used during 'pvecm qdevice setup <QDEVICE-IP>'"
 options:
-  port: 5403
-  server_tls: "on"
-  client_tls: "on"
-  debug: true
+  Port: 5403
+  Server_TLS: "on"
+  Client_TLS: "on"
+  Debug: true
+  Enable SSH Server (Required for Setup): false ##### Off by default for security purposes #####
+  AddOn root Password: null
   public_keys:
     - public_key: "" # by default assume that corosync-qnetd is able to push its certificate
+  enable 
   sshd_config: |
     Port 22
     PermitRootLogin yes
@@ -31,10 +34,12 @@ options:
     UsePAM yes
     Subsystem sftp internal-sftp
 schema:
-  port: int
-  server_tls: str
-  client_tls: str
-  debug: bool
+  Port: int
+  Server_TLS: str
+  Client_TLS: str
+  Debug: bool
+  Enable SSH Server (Required for Setup): bool
+  AddOn root Password: str
   sshd_config: str
   public_keys:
     - public_key: str

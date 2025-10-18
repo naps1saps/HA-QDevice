@@ -5,10 +5,11 @@ FROM ${BUILD_FROM}
 RUN apt update &&  \
     apt install -y corosync-qnetd openssh-server &&  \
     rm -rf /var/lib/apt/lists/*
-RUN echo 'root:Docker!' | chpasswd
+#RUN echo 'root:Docker!' | chpasswd
 
 # Copy data for add-on
 COPY run.sh /
+COPY sshd_config /etc/ssh/
 RUN chmod a+x /run.sh
 
 # Expose corosync-qnetd port
