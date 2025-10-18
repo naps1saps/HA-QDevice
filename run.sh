@@ -2,7 +2,7 @@
 # shellcheck shell=bash
 set -e
 
-bashio::log.info "Stopping ssh server"
+bashio::log.info "Stopping SSH Server"
 #service ssh stop
 
 #bashio::log.info "Updating the authorized_keys"
@@ -28,13 +28,15 @@ bashio::log.info "Setting 'root' password"
 ROOT_PWD="$(bashio::config 'AddOn_root_Password')"
 echo "root:${ROOT_PWD}" | chpasswd
 
-
-#bashio::log.info "Run corosync-qnetd in foreground:"
-#bashio::log.info "  using -p $(bashio::config 'Port')"
-#bashio::log.info "  using -s $(bashio::config 'Server_TLS')"
-#bashio::log.info "  using -c $(bashio::config 'Client_TLS')"
-#DEBUG=$(bashio::config 'Debug')
-#bashio::log.info "  using -d ${DEBUG}"
-#service corosync-qnetd stop
-#corosync-qnetd -f "$([ "${DEBUG}" = "true" ] && echo "-d")" -p "$(bashio::config 'Port')" -s "$(bashio::config 'Server_TLS')" -c "$(bashio::config 'Client_TLS')"
+#### Start corosync-qnetd in foreground mode + options ####
+bashio::log.info "Run corosync-qnetd in foreground:"
+bashio::log.info "  using -p $(bashio::config 'Port')"
+bashio::log.info "  using -s $(bashio::config 'Server_TLS')"
+bashio::log.info "  using -c $(bashio::config 'Client_TLS')"
+DEBUG=$(bashio::config 'Debug')
+bashio::log.info "  using -d ${DEBUG}"
+#Stop Daemon(background) Service
+service corosync-qnetd stop
+#Start in foreground mode [-f] (required for AddOn to run in HA) plus other options
+corosync-qnetd -f "$([ "${DEBUG}" = "true" ] && echo "-d")" # -p "$(bashio::config 'Port')" -s "$(bashio::config 'Server_TLS')" -c "$(bashio::config 'Client_TLS')"
 
