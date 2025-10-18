@@ -38,7 +38,7 @@ fi
 
 bashio::log.info "Setting 'root' password"
 ROOT_PWD="$(bashio::config 'AddOn root Password')"
-'root:${ROOT_PWD}' | chpasswd
+echo "root:${ROOT_PWD}" | chpasswd
 
 bashio::log.info "Run corosync-qnetd in foreground:"
 bashio::log.info "  using -p $(bashio::config 'port')"
