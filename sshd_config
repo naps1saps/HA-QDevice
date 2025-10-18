@@ -1,9 +1,0 @@
-#SSH Configuration
-
-Port 22
-PermitRootLogin yes
-StrictModes yes
-PubkeyAuthentication yes
-PasswordAuthentication no
-UsePAM yes
-Subsystem sftp internal-sftp
