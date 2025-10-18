@@ -24,7 +24,6 @@ options:
   AddOn root Password: null
   public_keys:
     - public_key: "" # by default assume that corosync-qnetd is able to push its certificate
-  enable 
   sshd_config: |
     Port 22
     PermitRootLogin yes
