@@ -28,7 +28,7 @@ for idx in $(bashio::config 'public_keys|keys'); do
     bashio::log.info "added: ${PUBLIC_KEY}"
 done
 
-ENABLE_SSH=$(bashio::config 'Enable SSH Server Required for Setup')
+ENABLE_SSH=$(bashio::config 'Enable_SSH_Server')
 if [ "$ENABLE_SSH" == true ]; then
   bashio::log.info "Starting SSH Server"
   service ssh start
@@ -37,7 +37,7 @@ else
 fi
 
 bashio::log.info "Setting 'root' password"
-ROOT_PWD="$(bashio::config 'AddOn root Password')"
+ROOT_PWD="$(bashio::config 'AddOn_root_Password')"
 echo "root:${ROOT_PWD}" | chpasswd
 
 bashio::log.info "Run corosync-qnetd in foreground:"
