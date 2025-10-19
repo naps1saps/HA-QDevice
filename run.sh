@@ -11,8 +11,8 @@ INITIAL_SETUP=$(bashio::config 'Initial_Setup')
 
 #### Create SSH Config File ####
 bashio::log.info "Creating 'sshd_config' File"
-bashio::log.info "SSH Port: $(bashio::config 'SSH-Port')"
-echo "Port $(bashio::config 'SSH-Port')" > /etc/ssh/sshd_config
+bashio::log.info "SSH Port: ${bashio::config 'SSH-Port'}"
+echo "Port ${bashio::config 'SSH-Port'}" > /etc/ssh/sshd_config
 echo "AuthorizedKeysFile .ssh/authorized_keys" >> /etc/ssh/sshd_config
 if [ "$INITIAL_SETUP" == true ]; then
   bashio::log.warn "Initial Setup is ENABLED. Please DISABLE Initial Setup if your QDevice has already been added to the cluster."
