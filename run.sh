@@ -10,7 +10,7 @@ service ssh stop
 INITIAL_SETUP=$(bashio::config 'Initial_Setup')
 
 #### Create SSH Config File ####
-SSH_PORT=$(bashio::config 'SSH-Port')
+SSH_PORT="$(bashio::config 'SSH-Port')"
 bashio::log.info "Creating 'sshd_config' File"
 bashio::log.info "SSH Port: ${SSH_PORT}"
 echo "Port ${SSH_PORT}" > /etc/ssh/sshd_config
