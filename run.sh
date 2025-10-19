@@ -10,10 +10,9 @@ service ssh stop
 INITIAL_SETUP=$(bashio::config 'Initial_Setup')
 
 #### Create SSH Config File ####
-SSH_PORT="$(bashio::config 'SSH_Port')"
 bashio::log.info "Creating 'sshd_config' File"
-bashio::log.info "SSH Port: ${SSH_PORT}"
-echo "Port ${SSH_PORT}" > /etc/ssh/sshd_config
+bashio::log.info "SSH Port: $(bashio::config 'SSH_Port')"
+echo "Port $(bashio::config 'SSH_Port')" > /etc/ssh/sshd_config
 echo "AuthorizedKeysFile .ssh/authorized_keys" >> /etc/ssh/sshd_config
 if [ "$INITIAL_SETUP" == true ]; then
   bashio::log.warning "Initial Setup is ENABLED. Please DISABLE Initial Setup if your QDevice has already been added to the cluster."
