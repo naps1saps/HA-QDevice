@@ -16,20 +16,18 @@ ports_description:
   "5403": "corosync-qnetd port"
   "22": "SSH port used during 'pvecm qdevice setup <QDEVICE-IP>'"
 options:
-  Port: 5403
+  Corosync-Port: 5403
   Server_TLS: "on"
   Client_TLS: "on"
   Debug: true
-  Enable_SSH_Server: false ##### Off by default for security purposes #####
-  AddOn_root_Password:
-  public_keys:
-    - public_key: "" # by default assume that corosync-qnetd is able to push its certificate
+  SSH-Port: 22
+  Initial_Setup: false ##### Off by default for security purposes #####
+  Env_root_Password:
 schema:
-  Port: int
+  Corosync-Port: int
   Server_TLS: str
   Client_TLS: str
   Debug: bool
-  Enable_SSH_Server: bool
-  AddOn_root_Password: str
-  public_keys:
-    - public_key: str
+  SSH-Port: int
+  Initial_Setup: bool
+  Env_root_Password: str(8,)

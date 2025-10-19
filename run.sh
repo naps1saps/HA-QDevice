@@ -2,41 +2,50 @@
 # shellcheck shell=bash
 set -e
 
+#### Stop SSH Server ####
 bashio::log.info "Stopping SSH Server"
-#service ssh stop
+service ssh stop
 
-#bashio::log.info "Updating the authorized_keys"
-#echo "" > ~/.ssh/authorized_keys
-#chmod 600 ~/.ssh/authorized_keys
-#for idx in $(bashio::config 'public_keys|keys'); do
-#    PUBLIC_KEY=$(bashio::config "public_keys[${idx}].public_key")
-#    echo "${PUBLIC_KEY}" >> ~/.ssh/authorized_keys
-#    bashio::log.info "added: ${PUBLIC_KEY}"
-#done
+#### Get Initial Setup status from configuration page ####
+INITIAL_SETUP=$(bashio::config 'Initial_Setup')
+
+#### Create SSH Config File ####
+bashio::log.info "Creating 'sshd_config' File"
+bashio::log.info "SSH Port: $(bashio::config 'SSH-Port')"
+echo "Port $(bashio::config 'SSH-Port')" > /etc/ssh/sshd_config
+echo "AuthorizedKeysFile .ssh/authorized_keys" >> /etc/ssh/sshd_config
+if [ "$INITIAL_SETUP" == true ]; then
+  bashio::log.warn "Initial Setup is ENABLED. Please DISABLE Initial Setup if your QDevice has already been added to the cluster."
+  bashio::log.warn "Initial Setup: Root login is allowed via SSH!"
+  echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+else
+  echo "PermitRootLogin no" >> /etc/ssh/sshd_config
+fi
+echo "StrictModes yes" >> /etc/ssh/sshd_config
+echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
+echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
+echo "UsePAM yes" >> /etc/ssh/sshd_config
+echo "Subsystem sftp internal-sftp" >> /etc/ssh/sshd_config
 
 #### Start SSH Server (Required for Setup) ####
-ENABLE_SSH=$(bashio::config 'Enable_SSH_Server')
-if [ "$ENABLE_SSH" == true ]; then
-  bashio::log.info "Starting SSH Server"
-  service ssh start
-else
-  bashio::log.info "SSH Server Disabled"
-fi
+bashio::log.info "Starting SSH Server"
+service ssh start
 
-#### Set ROOT Password ####
+#### Set Environment 'root' Password ####
 bashio::log.info "Setting 'root' password"
-ROOT_PWD="$(bashio::config 'AddOn_root_Password')"
+ROOT_PWD="$(bashio::config 'Env_root_Password')"
 echo "root:${ROOT_PWD}" | chpasswd
 
 #### Start corosync-qnetd in foreground mode + options ####
 bashio::log.info "Run corosync-qnetd in foreground:"
-bashio::log.info "  using -p $(bashio::config 'Port')"
+bashio::log.info "  using -p $(bashio::config 'Corosync-Port')"
 bashio::log.info "  using -s $(bashio::config 'Server_TLS')"
 bashio::log.info "  using -c $(bashio::config 'Client_TLS')"
 DEBUG=$(bashio::config 'Debug')
 bashio::log.info "  using -d ${DEBUG}"
 #Stop Daemon(background) Service
 service corosync-qnetd stop
-#Start in foreground mode [-f] (required for AddOn to run in HA) plus other options
-corosync-qnetd -f "$([ "${DEBUG}" = "true" ] && echo "-d")" # -p "$(bashio::config 'Port')" -s "$(bashio::config 'Server_TLS')" -c "$(bashio::config 'Client_TLS')"
+
+#Start in foreground mode [-f] (required for add-on to run in HA) plus other options
+corosync-qnetd -f "$([ "${DEBUG}" = "true" ] && echo "-d")" -p "$(bashio::config 'Corosync-Port')" -s "$(bashio::config 'Server_TLS')" -c "$(bashio::config 'Client_TLS')"
 
