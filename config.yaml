@@ -30,4 +30,4 @@ schema:
   Debug: bool
   SSH-Port: port
   Initial_Setup: bool
-  Env_root_Password: "str(8,)"
+  Env_root_Password: str
