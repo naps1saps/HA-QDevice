@@ -1,8 +1,10 @@
 # Proxmox QDevice External Vote Support HomeAssistant Add-on
 
-> ⚠️ This addon is experimental and is NOT recommended for production. Use at your own risk. Do not install this addon if your HA is running on a Proxmox cluster this QDevice is destined to join.
+> ⚠️ This addon is experimental and is NOT recommended for production. Use at your own risk. Do not install this addon if your HA is running on a Proxmox cluster this QDevice is destined to join.  It is best practice for Proxmox nodes to have their own private network to communicate on.  If you are using this addon, that is probably not the case.  As an added security measure, please remember to toggle off Initial_Setup on the configuration page to block SSH login as root.
 
 A giant thank you to [Emptyless](https://github.com/Emptyless) for starting this project.  Without the initial framework, I would have been lost.
+
+Consider donating > [PayPal](https://www.paypal.com/donate/?hosted_button_id=9RWHJQLKB3T9L) < if you find this useful.
 
 This QDevice addon is intended to provide extrnal vote support for small 2 node Proxmox clusters to keep quorum.  It is recommended to also use a QDevice with even numbered node count clusters.  It is not recommended to use a QDevice with odd numbered node count clusters.
 * For more details about QDevice Setup, see [Corosync External Vote Support](https://pve.proxmox.com/pve-docs/chapter-pvecm.html#_corosync_external_vote_support)
