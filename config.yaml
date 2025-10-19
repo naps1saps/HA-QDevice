@@ -14,7 +14,7 @@ ports:
   "22": "22"
 ports_description:
   "5403": "corosync-qnetd port"
-  "22": "SSH port used during 'pvecm qdevice setup <QDEVICE-IP>'"
+  "22": "SSH port.  See proxmox documentation about changing this port"
 options:
   Corosync-Port: 5403
   Server_TLS: "on"
@@ -24,10 +24,10 @@ options:
   Initial_Setup: false ##### Off by default for security purposes #####
   Env_root_Password:
 schema:
-  Corosync-Port: int
+  Corosync-Port: port
   Server_TLS: str
   Client_TLS: str
   Debug: bool
-  SSH-Port: int
+  SSH-Port: port
   Initial_Setup: bool
-  Env_root_Password: str(8,)
+  Env_root_Password: "str(8,)"
