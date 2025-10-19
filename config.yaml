@@ -24,10 +24,10 @@ options:
   Initial_Setup: false ##### Off by default for security purposes #####
   Env_root_Password:
 schema:
-  Corosync-Port: port
+  Corosync-Port: int
   Server_TLS: str
   Client_TLS: str
   Debug: bool
-  SSH-Port: port
+  SSH-Port: int
   Initial_Setup: bool
   Env_root_Password: str
