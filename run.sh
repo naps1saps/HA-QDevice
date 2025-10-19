@@ -16,8 +16,8 @@ bashio::log.info "SSH Port: ${SSH_PORT}"
 echo "Port ${SSH_PORT}" > /etc/ssh/sshd_config
 echo "AuthorizedKeysFile .ssh/authorized_keys" >> /etc/ssh/sshd_config
 if [ "$INITIAL_SETUP" == true ]; then
-  bashio::log.warn "Initial Setup is ENABLED. Please DISABLE Initial Setup if your QDevice has already been added to the cluster."
-  bashio::log.warn "Initial Setup: Root login is allowed via SSH!"
+  bashio::log.warning "Initial Setup is ENABLED. Please DISABLE Initial Setup if your QDevice has already been added to the cluster."
+  bashio::log.warning "Initial Setup: Root login is allowed via SSH!"
   echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 else
   echo "PermitRootLogin no" >> /etc/ssh/sshd_config
