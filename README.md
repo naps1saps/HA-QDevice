@@ -2,6 +2,8 @@
 
 > ⚠️ This addon is experimental and is NOT recommended for production. Use at your own risk. Do not install this addon if your HA is running on a Proxmox cluster this QDevice is destined to join.  It is best practice for Proxmox nodes to have their own private network to communicate on.  If you are using this addon, that is probably not the case.  As an added security measure, please remember to toggle 'OFF' Initial_Setup on the configuration page to block SSH login as root.
 
+> ⚠️ My HomeAssistant is running the HAOS on an x86 device.  This addon has not been tested with any other architectures yet.
+
 A giant thank you to [Emptyless](https://github.com/Emptyless) for starting this project.  Without the initial framework, I would have been lost.
 
 Consider donating > [PayPal](https://www.paypal.com/donate/?hosted_button_id=9RWHJQLKB3T9L) < if you find this useful.
