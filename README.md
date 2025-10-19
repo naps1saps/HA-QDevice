@@ -2,6 +2,8 @@
 
 > ⚠️ This addon is experimental and is NOT recommended for production. Use at your own risk ⚠️
 
+A giant thank you to [Emptyless](https://github.com/Emptyless) for starting this project.  Without the initial framework, I would have been lost.
+
 This QDevice addon is intended to provide extrnal vote support for small 2 node Proxmox clusters to keep quorum.  It is recommended to also use a QDevice with even numbered node count clusters.  It is not recommended to use a QDevice with odd numbered node count clusters.
 * For more details about QDevice Setup, see [Corosync External Vote Support](https://pve.proxmox.com/pve-docs/chapter-pvecm.html#_corosync_external_vote_support)
 * For more details about Corosync-qnetd, see [Debian.org Corosync-qnetd](https://manpages.debian.org/testing/corosync-qnetd)
