@@ -16,18 +16,18 @@ ports_description:
   "5403": "corosync-qnetd port"
   "22": "SSH port.  See proxmox documentation about changing this port"
 options:
-  Corosync-Port: 5403
+  Corosync_Port: 5403
   Server_TLS: "on"
   Client_TLS: "on"
   Debug: true
-  SSH-Port: 22
+  SSH_Port: 22
   Initial_Setup: false ##### Off by default for security purposes #####
   Env_root_Password:
 schema:
-  Corosync-Port: int
+  Corosync_Port: port
   Server_TLS: str
   Client_TLS: str
   Debug: bool
-  SSH-Port: int
+  SSH_Port: port
   Initial_Setup: bool
   Env_root_Password: str

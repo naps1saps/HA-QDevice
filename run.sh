@@ -10,10 +10,10 @@ service ssh stop
 INITIAL_SETUP=$(bashio::config 'Initial_Setup')
 
 #### Create SSH Config File ####
-SSH_PORT="$(bashio::config 'SSH-Port')"
+SSH_PORT="$(bashio::config 'SSH_Port')"
 bashio::log.info "Creating 'sshd_config' File"
 bashio::log.info "SSH Port: ${SSH_PORT}"
-echo "Port " > /etc/ssh/sshd_config
+echo "Port ${SSH_PORT}" > /etc/ssh/sshd_config
 echo "AuthorizedKeysFile .ssh/authorized_keys" >> /etc/ssh/sshd_config
 if [ "$INITIAL_SETUP" == true ]; then
   bashio::log.warning "Initial Setup is ENABLED. Please DISABLE Initial Setup if your QDevice has already been added to the cluster."
@@ -39,7 +39,7 @@ echo "root:${ROOT_PWD}" | chpasswd
 
 #### Start corosync-qnetd in foreground mode + options ####
 bashio::log.info "Run corosync-qnetd in foreground:"
-bashio::log.info "  using -p $(bashio::config 'Corosync-Port')"
+bashio::log.info "  using -p $(bashio::config 'Corosync_Port')"
 bashio::log.info "  using -s $(bashio::config 'Server_TLS')"
 bashio::log.info "  using -c $(bashio::config 'Client_TLS')"
 DEBUG=$(bashio::config 'Debug')
@@ -48,5 +48,5 @@ bashio::log.info "  using -d ${DEBUG}"
 service corosync-qnetd stop
 
 #Start in foreground mode [-f] (required for add-on to run in HA) plus other options
-corosync-qnetd -f "$([ "${DEBUG}" = "true" ] && echo "-d")" -p "$(bashio::config 'Corosync-Port')" -s "$(bashio::config 'Server_TLS')" -c "$(bashio::config 'Client_TLS')"
+corosync-qnetd -f "$([ "${DEBUG}" = "true" ] && echo "-d")" -p "$(bashio::config 'Corosync_Port')" -s "$(bashio::config 'Server_TLS')" -c "$(bashio::config 'Client_TLS')"
 
