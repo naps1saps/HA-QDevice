@@ -1,6 +1,6 @@
 # Proxmox QDevice External Vote Support HomeAssistant Add-on
 
-> ⚠️ This addon is experimental and is NOT recommended for production. Use at your own risk ⚠️
+> ⚠️ This addon is experimental and is NOT recommended for production. Use at your own risk. Do not install this addon if your HA is running on a Proxmox cluster this QDevice is destined to join.
 
 A giant thank you to [Emptyless](https://github.com/Emptyless) for starting this project.  Without the initial framework, I would have been lost.
 
@@ -9,7 +9,9 @@ This QDevice addon is intended to provide extrnal vote support for small 2 node 
 * For more details about Corosync-qnetd, see [Debian.org Corosync-qnetd](https://manpages.debian.org/testing/corosync-qnetd)
 * For more details about SSH-Server, see [How to Configure the OpenSSH Server](https://www.ssh.com/academy/ssh/sshd_config)
 
-## Prerequisites
+## Considerations Before Installation
+I hope it is obvious that his addon should only be used with Home Assistant running on an external device that is in no way connected to your Proxmox cluster.
+
 This addon contains an SSH server.  Proxmox needs SSH to do administrative tasks in addition to communicating with the corosync-qnetd service.  If you need to use a different port for SSH, theoretically this is possible but you will need to do the research and modifications on your own.  While using a different SSH port is available, changing it to something other than port 22 is out of the scope of this project.
 
 ## Installing the addon in Home Assistant
