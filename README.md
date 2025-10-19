@@ -1,6 +1,6 @@
 # Proxmox QDevice External Vote Support HomeAssistant Add-on
 
-> ⚠️ This addon is experimental and is NOT recommended for production. Use at your own risk. Do not install this addon if your HA is running on a Proxmox cluster this QDevice is destined to join.  It is best practice for Proxmox nodes to have their own private network to communicate on.  If you are using this addon, that is probably not the case.  As an added security measure, please remember to toggle off Initial_Setup on the configuration page to block SSH login as root.
+> ⚠️ This addon is experimental and is NOT recommended for production. Use at your own risk. Do not install this addon if your HA is running on a Proxmox cluster this QDevice is destined to join.  It is best practice for Proxmox nodes to have their own private network to communicate on.  If you are using this addon, that is probably not the case.  As an added security measure, please remember to toggle 'OFF' Initial_Setup on the configuration page to block SSH login as root.
 
 A giant thank you to [Emptyless](https://github.com/Emptyless) for starting this project.  Without the initial framework, I would have been lost.
 
@@ -31,7 +31,7 @@ https://github.com/naps1saps/HA-QDevice
 
 ## Addon Setup
 1) Go to the configuration tab and set a secure Env_root_Password.  An environment root password is required for the initial SSH connection by your Proxmox cluster.
-2) Go to the configuration tab and toggle on Initial_Setup.
+2) Go to the configuration tab and toggle 'ON' Initial_Setup.
 3) Save the configuration and start/restart the addon
 
 ## Registering the QDevice with your Proxmox cluster
@@ -68,7 +68,7 @@ pvecm status
 
 * We can see the QDevice has a vote.  If it was added but unsuccessful, the vote count would be 0.
 
-8) **Go back to Home Assistant addon configuration page and toggle off "Initial_Setup" then restart the addon to disable SSH login as root.**
+8) **Go back to Home Assistant addon configuration page and toggle 'OFF' "Initial_Setup" then restart the addon to disable SSH login as root.**
 
 ## Useful Commands and Information
 * Removing the QDevice from your Proxmox cluster
