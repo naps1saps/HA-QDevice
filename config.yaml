@@ -19,7 +19,7 @@ options:
   Corosync_Port: 5403
   Server_TLS: "on"
   Client_TLS: "on"
-  Debug: true
+  Debug: false
   SSH_Port: 22
   Initial_Setup: false ##### Off by default for security purposes #####
   Env_root_Password:
