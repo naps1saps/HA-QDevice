@@ -1,10 +1,12 @@
 ARG BUILD_FROM
 FROM ${BUILD_FROM}
 
-# install corosync-qnetd, corosync-qdevice, and openssh-server
+# install systemd systemd-sysv corosync-qnetd corosync-qdevice and openssh-server
 RUN apt update &&  \
     apt install -y corosync-qnetd corosync-qdevice openssh-server &&  \
     rm -rf /var/lib/apt/lists/*
+RUN chmod 1777 /var/run
+RUN chown -R coroqnetd:coroqnetd /etc/corosync/
 
 # Copy data for add-on
 COPY run.sh /
